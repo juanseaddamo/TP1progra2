@@ -19,7 +19,8 @@ public class StaticGenericQueue<T> implements GenericQueue<T>{
         if(isEmpty()){
             throw new RuntimeException("La cola esta vacia");
         }
-        return array[this.count - 1];
+        //return array[this.count - 1]; (Se cambio debido a que en una cola se devuelve el primer item)
+        return array[0];
     }
 
     @Override
