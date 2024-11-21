@@ -46,4 +46,13 @@ public class StaticGenericStack<T> implements GenericStack<T>{
     public boolean isEmpty() {
         return this.count == 0;
     }
+
+    public int getCount() {
+        return this.count;
+    }
+
+    public T[] getArray() {
+        return this.array;
+    }
+
 }

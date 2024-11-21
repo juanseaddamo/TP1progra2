@@ -1,9 +1,11 @@
-package org.example.adt;
+package Ejercicio1;
 
-public interface Queue {
+public interface Stack {
 
-    int getFirst();
+    int getTop();
     void remove();
     void add(int value);
     boolean isEmpty();
+
 }
+

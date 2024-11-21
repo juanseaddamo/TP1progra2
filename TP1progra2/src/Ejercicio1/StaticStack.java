@@ -1,4 +1,4 @@
-package org.example.adt;
+package Ejercicio1;
 
 public class StaticStack implements Stack {
 

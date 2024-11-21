@@ -13,6 +13,15 @@ public class StaticGenericQueue<T> implements GenericQueue<T>{
         this.count = 0;
     }
 
+    // Constructor con parametros variables
+    public StaticGenericQueue(T... values) {
+        this();
+        for (T value : values) {
+            this.add(value);
+        }
+    }
+
+
 
     @Override
     public T getFirst() {

@@ -1,7 +1,11 @@
-package Ejercicio2;
+package Ejercicio6.parte2;
+
+import Ejercicio2.GenericSet;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.Random;
 
 public class StaticGenericSet<T> implements GenericSet<T> {
@@ -20,7 +24,7 @@ public class StaticGenericSet<T> implements GenericSet<T> {
     @Override
     public void add(T a) {
         for(int i = 0; i < this.count; i++){
-            if(this.array[i] == a){
+            if(this.array[i].equals(a)){
                 return;
             }
         }
@@ -35,18 +39,17 @@ public class StaticGenericSet<T> implements GenericSet<T> {
         }
         int i = random.nextInt(count); //elige un numero aleatorio entre 0 y count-1
         return this.array[i];
-
     }
 
     @Override
     public void remove(T a) {
         for(int i = 0; i < this.count; i++){
-            if(this.array[i] == a){
+            if(this.array[i].equals(a)){
                 this.array[i] = this.array[this.count-1];
                 this.count--;
+                return;
             }
         }
-
     }
 
     @Override
@@ -54,14 +57,12 @@ public class StaticGenericSet<T> implements GenericSet<T> {
         return this.count == 0;
     }
 
-
-
     public int getCount() {
         return this.count;
     }
 
-    //Para el builder
-    public List<T> getElements() {
+    // Method to retrieve elements
+    private List<T> getElements() {
         List<T> elements = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             elements.add(array[i]);
@@ -69,7 +70,28 @@ public class StaticGenericSet<T> implements GenericSet<T> {
         return elements;
     }
 
+    public boolean esSubconjunto(StaticGenericSet<T> conjunto) {
+        List<T> elements = conjunto.getElements();
+        Set<T> elementSet = new HashSet<>(elements);
+        for (int i = 0; i < this.count; i++) {
+            if (!elementSet.contains(this.array[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-
-
+        public GenericSet<T> complemento(StaticGenericSet<T> conjunto) {
+        if (!esSubconjunto(conjunto)) {
+            throw new IllegalArgumentException("El conjunto no es un subconjunto del superconjunto");
+        }
+        GenericSet<T> complemento = new StaticGenericSet<>();
+        Set<T> elementSet = new HashSet<>(conjunto.getElements());
+        for (int i = 0; i < this.count; i++) {
+            if (!elementSet.contains(this.array[i])) {
+                complemento.add(this.array[i]);
+            }
+        }
+        return complemento;
+    }
 }

@@ -1,4 +1,4 @@
-package org.example.adt;
+package Ejercicio6.parte1y3;
 
 public interface Stack {
 
@@ -8,4 +8,3 @@ public interface Stack {
     boolean isEmpty();
 
 }
-
